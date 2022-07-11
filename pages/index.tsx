@@ -1,20 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Cetegories, PostCard, PostWidgets } from "../components";
-import Image from "next/image";
+import { getPosts } from "../services";
 
-const posts = [
-  {
-    title: "React Testing",
-    excerpt: "Learn react testing",
-  },
-  {
-    title: "React with next",
-    excerpt: "Learn react with next js",
-  },
-];
-
-const Home: NextPage = () => {
+const Home: NextPage = ({ posts }) => {
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -37,5 +26,14 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  const posts = (await getPosts()) || [];
+  return {
+    props: {
+      posts,
+    },
+  };
+}
 
 export default Home;
