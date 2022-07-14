@@ -1,9 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { type } from "os";
 import { Cetegories, PostCard, PostWidgets } from "../components";
 import { getPosts } from "../services";
+import { Post } from "../types/post";
 
-const Home: NextPage = ({ posts }) => {
+type Nod = {
+  node: Post;
+};
+
+const Home: NextPage = ({ posts }: any) => {
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -12,8 +18,8 @@ const Home: NextPage = ({ posts }) => {
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {posts.map((post, index) => (
-            <PostCard key={index} post={post} />
+          {posts.map((post: Nod, index: number) => (
+            <PostCard key={index} post={post.node} />
           ))}
         </div>
         <div className="lg:col-span-4 col-span-1">
