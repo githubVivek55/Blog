@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Link from "Next/link";
+import Link from "next/Link";
 
 const categories = [
   { name: "React", slug: "react" },
