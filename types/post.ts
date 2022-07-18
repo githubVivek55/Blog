@@ -1,5 +1,9 @@
 import { type } from "os";
 
+export interface Category {
+  name: string;
+  slug: string;
+}
 export interface Post {
   title: string;
   excerpt: string;
