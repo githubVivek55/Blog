@@ -5,13 +5,12 @@ import { getRecentPosts, getSimilarPosts } from "../services";
 import { Post } from "../types/post";
 
 type Props = {
-  categories: undefined;
-  slug: undefined;
+  categories?: string[];
+  slug?: undefined | string;
 };
 
 const PostWidgets = ({ categories, slug }: Props) => {
   const [releatedPosts, setReleatedPosts] = useState<Post[]>([]);
-  console.log(releatedPosts);
   useEffect(() => {
     if (slug) {
       getSimilarPosts(categories, slug).then((result: Post[]) =>

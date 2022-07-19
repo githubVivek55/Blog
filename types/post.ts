@@ -11,8 +11,8 @@ export interface Post {
   slug: string;
   auther: Author;
   createdAt: Date;
+  categories?: Category[];
 }
-
 type Fimg = {
   url: string;
 };
