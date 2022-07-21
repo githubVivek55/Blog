@@ -12,7 +12,24 @@ export interface Post {
   auther: Author;
   createdAt: Date;
   categories?: Category[];
+  content?: Raw1;
 }
+
+type Raw1 = {
+  raw: Raw2;
+};
+
+type Raw2 = {
+  children: TypeObj[];
+  type: string;
+};
+export type TypeObj = {
+  children: Item[];
+  type: string;
+};
+type Item = {
+  test: string;
+};
 type Fimg = {
   url: string;
 };
