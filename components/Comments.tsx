@@ -5,8 +5,14 @@ import React, { useState, useEffect } from "react";
 import { getComments } from "../services";
 import parse from "html-react-parser";
 
-const Comments = ({ slug }) => {
-  const [comments, setComments] = useState([]);
+type Comment = {
+  name: string;
+  createdAt: string;
+  comment: string;
+};
+
+const Comments = ({ slug }: { slug: string }) => {
+  const [comments, setComments] = useState<Comment[]>([]);
   useEffect(() => {
     getComments(slug).then((res) => setComments(res));
   }, []);

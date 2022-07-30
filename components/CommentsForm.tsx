@@ -1,24 +1,28 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 import { submitComment } from "../services";
 
-const CommentsForm = ({ slug }) => {
+const CommentsForm = ({ slug }: { slug: string }) => {
   const [error, setError] = useState(false);
   const [localStorage, setLocalStorage] = useState(null);
-  const [showSuccessMsg, setShowSuccessMsg] = useState(false);
-  const commentEle = useRef();
-  const nameEle = useRef();
-  const emailEle = useRef();
-  const storeDataEle = useRef();
-  useEffect(() => {
-    nameEle.current.value = window.localStorage.getItem("name");
-    emailEle.current.value = window.localStorage.getItem("email");
+  const [showSuccessMsg, setShowSuccessMsg] = useState<Boolean>(false);
+  const commentEle = useRef<HTMLTextAreaElement | null>(null);
+  const nameEle = useRef<HTMLInputElement | null>(null);
+  const emailEle = useRef<HTMLInputElement | null>(null);
+  const storeDataEle = useRef<HTMLInputElement | null>(null);
+  useLayoutEffect(() => {
+    if (nameEle && nameEle.current) {
+      nameEle.current.value = window.localStorage.getItem("name") || "";
+    }
+    if (emailEle && emailEle.current) {
+      emailEle.current.value = window.localStorage.getItem("email") || "";
+    }
   }, []);
   const handleComment = () => {
     setError(false);
-    const { value: comment } = commentEle.current;
-    const { value: name } = nameEle.current;
-    const { value: email } = emailEle.current;
-    const { checked: storeData } = storeDataEle.current;
+    const comment = commentEle.current?.value;
+    const name = nameEle.current?.value;
+    const email = emailEle.current?.value;
+    const storeData = storeDataEle.current?.checked;
 
     if (!name || !comment || !email) {
       setError(error);
