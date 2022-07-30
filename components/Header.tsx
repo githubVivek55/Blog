@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../services";
 import { Category } from "../types/post";
