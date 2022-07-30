@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { GraphQLClient, gql } from "graphql-request";
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const graphqlAPI: string = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT || "";
 
 export default async function comments(
   req: NextApiRequest,

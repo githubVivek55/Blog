@@ -33,9 +33,10 @@ type Item = {
 type Fimg = {
   url: string;
 };
-type Author = {
+export type Author = {
   name: string;
   photo: Photo;
+  bio: string;
 };
 type Photo = {
   url: string;
